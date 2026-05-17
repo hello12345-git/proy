@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NautilusOS - Free Web-Based Operating System | Unblockable Proxy Browsers</title>
+    <meta name="description" content="NautilusOS is a free web-based operating system with a complete desktop environment. Features three unblockable proxy browsers, multiple user accounts, themes, and AI assistant. Download OneFile or full source code.">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #0d1117;
+            --accent: #77cebb;
+--accent-glow: rgba(0,0,0,0);
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border: #21262d;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background-fish {
+            position: fixed;
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+            animation: swimBob 2s ease-in-out infinite;
+        }
+
+        @keyframes swimBob {
+            0%, 100% { margin-top: 0; }
+            50% { margin-top: -5px; }
+        }
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.section + .section {
+    border-top: 1px solid var(--accent);
+}
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            border-radius: 1px;
+            background: linear-gradient(90deg, var(--accent) 0%, #8edccb 100%);
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px var(--accent-glow);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            background: rgba(119, 206, 187, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .hero-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-icon {
+            font-size: 5.5rem;
+            color: var(--accent);
+            margin-right: 10px;
+            filter: drop-shadow(0 0 20px var(--accent-glow));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            color: var(--text-primary);
+            text-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-family: inherit;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(119, 206, 187, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section */
+        .section {
+            padding: 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Development Status */
+        .status-section {
+            background: linear-gradient(135deg, rgba(119, 206, 187, 0.05) 0%, transparent 100%);
+            border: 1px solid rgba(119, 206, 187, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Main Grid Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            background: rgba(119, 206, 187, 0.05);
+            border: 1px solid rgba(119, 206, 187, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(119, 206, 187, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon i {
+            font-size: 1.25rem;
+            color: var(--accent);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Browsers */
+        .browsers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .browser-card {
+            background: linear-gradient(135deg, rgba(119, 206, 187, 0.08) 0%, rgba(119, 206, 187, 0.02) 100%);
+            border: 1px solid rgba(119, 206, 187, 0.3);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .browser-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px var(--accent-glow);
+            transform: translateY(-5px);
+        }
+
+        .browser-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .browser-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+        }
+
+        /* Deploy Section */
+        .deploy-section {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(119, 206, 187, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .deploy-option {
+            background: rgba(119, 206, 187, 0.05);
+            border: 1px solid rgba(119, 206, 187, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .deploy-option:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .deploy-option h4 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .grid-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Release Notes Popup */
+        .release-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .release-popup.active {
+            display: flex;
+        }
+
+        .release-popup-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 50px rgba(119, 206, 187, 0.2);
+            animation: popupSlide 0.3s ease-out;
+        }
+
+        @keyframes popupSlide {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .release-popup h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .release-popup h3 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .release-popup ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .release-popup li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .release-popup li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .release-popup .close-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .release-popup .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(119, 206, 187, 0.3);
+        }
+
+        /* Getting Started */
+        .getting-started-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .getting-started-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .getting-started-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .getting-started-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .getting-started-card ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .getting-started-card li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .getting-started-card code {
+            background: rgba(119, 206, 187, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+
+        .getting-started-card h4 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: -1rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-section a,
+        .footer-section p {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.2s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+.scroll-prompt i {
+    font-size: 2rem;
+    margin-top: 3.5rem;
+    color: var(--accent);
+    animation: bounceArrow 2s infinite;
+}
+
+@keyframes bounceArrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+/* Page Loader */
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.loader-fish {
+    font-size: 6rem;
+    color: var(--accent);
+    animation: fishSwim 1s ease-in-out infinite;
+    filter: drop-shadow(0 0 40px var(--accent));
+}
+
+@keyframes fishSwim {
+    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+    25% { transform: translateY(-10px) scale(1.05) rotate(-5deg); }
+    50% { transform: translateY(0) scale(1) rotate(0deg); }
+    75% { transform: translateY(10px) scale(0.95) rotate(5deg); }
+}
+
+    </style>
+</head>
+<body>
+  <!-- Page Loader -->
+<div id="page-loader">
+    <i class="fas fa-fish loader-fish"></i>
+</div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Release Notes Popup -->
+    <div class="release-popup" id="releasePopup">
+        <div class="release-popup-content">
+            <h2><i class="fas fa-fish"></i> New in NautilusOS!</h2>
+            <p style="color: var(--text-secondary); text-align: center; margin-bottom: 1.5rem;">We've been busy adding new features and improvements!</p>
+
+            <h3>New Features</h3>
+            <ul>
+                <li><strong>BIOS System:</strong> Access BIOS by pressing Right Shift on boot screen</li>
+                <li><strong>Taskbar Layout Options:</strong> Customize your taskbar with multiple layout styles</li>
+                <li><strong>Community Apps:</strong> Browse and install apps directly from the community</li>
+                <li><strong>Website to App in Seconds:</strong> Convert any website into a native app instantly</li>
+                <li><strong>About Nautilus App:</strong> Learn more about the OS with the new About app</li>
+                <li><strong>Bloatless Install:</strong> Cleaner, faster installation with no unnecessary apps</li>
+            </ul>
+
+            <h3>Changes</h3>
+            <ul>
+                <li>file:// browser experimental settings moved to BIOS</li>
+                <li>Improved performance and stability</li>
+                <li>Bug fixes and UI refinements</li>
+                <li>Enhanced security features</li>
+            </ul>
+
+            <button class="close-btn" onclick="closeReleasePopup()">Got it!</button>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-code-branch"></i>
+                AGPL-3.0 Licensed • Open Source
+            </div>
+            <div class="hero-title">
+                <i class="fas fa-fish hero-icon"></i>
+                <h1>NautilusOS</h1>
+            </div>
+            <p class="hero-description">
+                A fully functional web-based operating system with a complete desktop environment.
+                Features three unblockable proxy browsers! Built entirely with vanilla HTML, CSS, and JavaScript.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://nautilus-os.vercel.app" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Try Live Demo
+                </a>
+                <a href="https://github.com/nautilus-os/NautilusOS/tree/main/NautilusOS-OneFile" class="btn btn-secondary">
+                    <i class="fas fa-download"></i>
+                    Download OneFile
+                </a>
+                <a href="https://github.com/nautilus-os/NautilusOS/archive/refs/heads/main.zip" class="btn btn-secondary">
+                    <i class="fas fa-file-archive"></i>
+                    Full Source Code
+                </a>
+            </div>
+          <div class="scroll-prompt">
+    <i class="fas fa-arrow-down"></i>
+</div>
+
+        </div>
+
+
+    </section>
+
+    <!-- Main Content Grid -->
+    <section class="section">
+        <div class="main-grid">
+            <!-- Left Column -->
+            <div class="grid-column">
+                <div class="status-section">
+                    <h2 class="section-title">Development Status</h2>
+                    <div class="status-badge">MINIMAL</div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                        NautilusOS is currently under minimal development. The team is still looking at PRs and issues.
+                    </p>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats" style="margin-top: 2rem;">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Proxy Browsers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"><i class="fa-solid fa-infinity"></i></div>
+                        <div class="stat-label">Games & Apps</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Client-Side</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Unblockable*</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - About & Browsers -->
+            <div class="grid-column">
+                <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 2rem;">
+                    <h2 class="section-title" style="font-size: 1.5rem; text-align: left; margin-bottom: 1rem;">About NautilusOS</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                        NautilusOS brings a full desktop experience to your browser. Boot it up, log in, and interact with it like a real desktop environment. Everything runs client-side with no backend or external data storage.
+                    </p>
+
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent);">Three Proxy Browsers</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: rgba(119, 206, 187, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(119, 206, 187, 0.2);">
+                            <h4 style="color: var(--accent); font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">Nautilus Browser</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">Primary browser with optimized performance</p>
+                        </div>
+                        <div style="background: rgba(119, 206, 187, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(119, 206, 187, 0.2);">
+                            <h4 style="color: var(--accent); font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">Ultraviolet</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">Advanced proxy technology for bypassing restrictions</p>
+                        </div>
+                        <div style="background: rgba(119, 206, 187, 0.05); padding: 1rem; border-radius: 8px; border: 1px solid rgba(119, 206, 187, 0.2);">
+                            <h4 style="color: var(--accent); font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;">Helios</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">CORS proxy backup for redundancy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="section">
+        <h2 class="section-title">Need a proxy? We've got three!</h2>
+        <p class="section-subtitle">
+            Each using different technologies to ensure you can always access the content you need
+        </p>
+        <div class="browsers-grid">
+            <div class="browser-card">
+                <h3>Nautilus Browser</h3>
+                <p>The primary browser built into the OS with optimized performance and integrated features for seamless browsing experience.</p>
+            </div>
+            <div class="browser-card">
+                <h3>Ultraviolet</h3>
+                <p>Advanced proxy technology for bypassing restrictions with enhanced security and maximum compatibility.</p>
+            </div>
+            <div class="browser-card">
+                <h3>Helios</h3>
+                <p>An alternative, though less advanced, browser that uses CORS proxy technology for redundancy and accessibility when other methods are blocked.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Features -->
+    <section class="section">
+        <h2 class="section-title">Key Features</h2>
+        <p class="section-subtitle">
+            Everything you need for a complete desktop experience
+        </p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-desktop"></i></div>
+                <h3>Desktop Environment</h3>
+                <p>Fully animated desktop with draggable windows, taskbar, Start menu, and context menu</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                <h3>Advanced Cloaking</h3>
+                <p>Tab blackout, anti-monitoring, automatic title/icon rotation for maximum discretion</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-palette"></i></div>
+                <h3>Customization</h3>
+                <p>Themes, exportable profiles, window transparency, animation controls</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3>AI Assistant</h3>
+                <p>Built-in AI for answering questions and controlling system functions</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Multi-User</h3>
+                <p>Multiple accounts with permissions, separate desktops, and preferences</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-store"></i></div>
+                <h3>App Ecosystem</h3>
+                <p>Preinstalled apps, built-in store with dev and community apps</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bell"></i></div>
+                <h3>Notifications</h3>
+                <p>System events, app updates, quick action menu access</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
+                <h3>File Explorer</h3>
+                <p>Create, delete, move, organize files intuitively</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-photo-video"></i></div>
+                <h3>Media Tools</h3>
+                <p>Audio player, screenshot capture, image viewer</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Built-in Games</h3>
+                <p>Preinstalled games without external dependencies</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-user-circle"></i></div>
+                <h3>Profile Management</h3>
+                <p>Export/import settings, themes, apps, and preferences</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                <h3>Privacy Focused</h3>
+                <p>All data stored locally. No servers, no tracking, no analytics</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started & Deploy -->
+    <section class="section">
+        <div class="main-grid">
+            <div class="grid-column">
+                <div class="getting-started-card">
+                    <h2 class="section-title" style="font-size: 1.5rem; text-align: left; margin-bottom: 1rem;">Getting Started</h2>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--accent); font-size: 1.1rem; margin-bottom: 0.5rem;">OneFile Version</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">Download <code>index.html</code> from NautilusOS-OneFile folder and open in browser. Perfect for when Nautilus is blocked.</p>
+                        <p style="color: var(--text-secondary); font-size: 0.75rem; margin-top: 0.5rem;"><strong>Note:</strong> Nautilus Browser disabled by default; Ultraviolet won't work due to file:// limitations.</p>
+                    </div>
+
+                    <div>
+                        <h4 style="color: var(--accent); font-size: 1.1rem; margin-bottom: 0.5rem;">Deploy Your Own</h4>
+                        <ul style="color: var(--text-secondary); font-size: 0.85rem; list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> Vercel - One-click deployment</li>
+                            <li style="margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: var(--accent);"></i> Netlify - One-click deployment</li>
+                            <li><i class="fa-solid fa-check" style="color: var(--accent);"></i> GitHub Codespaces - Temporary</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-column">
+                <div class="deploy-section">
+                    <h2 class="section-title" style="font-size: 1.5rem;">Deploy Now</h2>
+                    <p class="section-subtitle">Get your own instance running in minutes</p>
+                    <div class="deploy-grid">
+                        <div class="deploy-option">
+                            <h4>Vercel</h4>
+                            <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fnautilus-os%2FNautilusOS" class="btn btn-primary" style="margin-top: 1rem; padding: 0.75rem 1.5rem; font-size: 0.85rem;">
+                                <i class="fas fa-rocket"></i> Deploy
+                            </a>
+                        </div>
+                        <div class="deploy-option">
+                            <h4>Netlify</h4>
+                            <a href="https://app.netlify.com/start/deploy?repository=https%3A%2F%2Fgithub.com%2Fnautilus-os%2Fnautilusos" class="btn btn-primary" style="margin-top: 1rem; padding: 0.75rem 1.5rem; font-size: 0.85rem;">
+                                <i class="fas fa-rocket"></i> Deploy
+                            </a>
+                        </div>
+                        <div class="deploy-option">
+                            <h4>Codespaces</h4>
+                            <a href="https://github.com/nautilus-os/NautilusOS" class="btn btn-primary" style="margin-top: 1rem; padding: 0.75rem 1.5rem; font-size: 0.85rem;">
+                                <i class="fab fa-github"></i> Use
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Project</h4>
+                <a href="https://github.com/nautilus-os/NautilusOS">GitHub Repository</a>
+                <a href="https://nautilus-os.vercel.app">Live Demo</a>
+                <a href="https://github.com/nautilus-os/NautilusOS/issues">Report Issues</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="https://github.com/nautilus-os/NautilusOS/blob/main/README.md">Documentation</a>
+                <a href="https://github.com/nautilus-os/NautilusOS/releases">Releases</a>
+                <a href="https://github.com/nautilus-os/NautilusOS/blob/main/LICENSE">License (AGPL-3.0)</a>
+            </div>
+            <div class="footer-section">
+                <h4>Developers</h4>
+                <p>dinguschan</p>
+                <p>x8rr</p>
+                <p>lanefiedler-731</p>
+            </div>
+          <div class="footer-section">
+            <h4>Notes*</h4>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6;">Blocking Nautilus requires methods that severely impact normal browsing: blocking all static hosts, expensive deep packet inspection, disabling service workers (breaks PWAs), or disabling JavaScript (breaks most sites). Multiple proxy technologies and deploy-anywhere flexibility make comprehensive blocking impractical.</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+            <p>NautilusOS © 2025 • Licensed under AGPL-3.0</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        const backToTop = document.querySelector('.back-to-top');
+       
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+     
+      window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
+     
+ window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+
+    loader.style.transition = 'opacity 1s ease';
+    loader.style.opacity = '0';
+
+    setTimeout(() => {
+        loader.style.display = 'none';
+        showReleasePopup();
+    }, 1000);
+
+    createBackgroundFish();
+});
+
+function createBackgroundFish() {
+    const fishCount = 6;
+
+    for (let i = 0; i < fishCount; i++) {
+        const fish = document.createElement('i');
+        fish.className = 'fas fa-fish background-fish';
+        fish.dataset.vx = (Math.random() - 0.5) * 0.06;
+        fish.dataset.vy = (Math.random() - 0.5) * 0.04;
+        fish.dataset.x = Math.random() * 100;
+        fish.dataset.y = Math.random() * 100;
+        fish.style.left = fish.dataset.x + 'vw';
+        fish.style.top = fish.dataset.y + 'vh';
+        fish.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+        fish.style.transform = 'scaleX(1)';
+        document.body.appendChild(fish);
+
+        animateFish(fish);
+    }
+}
+
+function animateFish(fish) {
+    let x = parseFloat(fish.dataset.x);
+    let y = parseFloat(fish.dataset.y);
+    let vx = parseFloat(fish.dataset.vx);
+    let vy = parseFloat(fish.dataset.vy);
+
+    function update() {
+        x += vx;
+        y += vy;
+
+        if (x < -10) { x = 110; }
+        if (x > 110) { x = -10; }
+        if (y < -5) { vy = Math.abs(vy); }
+        if (y > 105) { vy = -Math.abs(vy); }
+
+        fish.dataset.x = x;
+        fish.dataset.y = y;
+        fish.dataset.vx = vx;
+        fish.dataset.vy = vy;
+
+        fish.style.left = x + 'vw';
+        fish.style.top = y + 'vh';
+
+        const scale = vx > 0 ? 1 : -1;
+        fish.style.transform = `scaleX(${scale})`;
+
+        requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+}
+
+function showReleasePopup() {
+    const popup = document.getElementById('releasePopup');
+    setTimeout(() => {
+        popup.classList.add('active');
+    }, 500);
+}
+
+function closeReleasePopup() {
+    const popup = document.getElementById('releasePopup');
+    popup.classList.remove('active');
+}
+
+
+    </script>
+</body>
+</html>
